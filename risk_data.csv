@@ -1,5 +1,4 @@
 Company,AI Product,Launch Date,Model,Wrong Answer Risk %,Real Harm Risk %,Class Action Success %,Estimated Exposure ($),Announcement URL
-UnitedHealth,AI Claims Processor,May 2025,GPT-4,12%,55%,35%,51.8B,#
 Meta,Meta AI Assistant,Apr 2025,Llama 3,8%,40%,30%,12.5B,https://about.meta.com/news/ai-assistant-launch
 Amperity,Customer Data AI,Mar 2025,Custom,10%,45%,28%,8.2B,https://amperity.com/newsroom/customer-data-ai
 Microsoft,Copilot Pro,Jan 2025,GPT-4,7%,35%,25%,15.3B,https://news.microsoft.com/copilot-pro-launch
