@@ -3,17 +3,17 @@ import requests
 from bs4 import BeautifulSoup
 
 def scrape_url(company):
-    # Replace with real search API or scraping logic
-    if company == "UnitedHealth":
-        url = "https://www.unitedhealthgroup.com/newsroom.html"
-        try:
-            response = requests.get(url, timeout=10)
-            soup = BeautifulSoup(response.text, 'html.parser')
-            link = soup.find('a', href=True, string=lambda text: 'claims' in text.lower() if text else False)
-            return link['href'] if link else '#'
-        except Exception:
-            return '#'
-    return '#'
+    # Generic scraping logic using a default news search approach
+    # Replace with company-specific URLs or a search API if needed
+    base_url = "https://news.google.com/search?q={}+site:*.com+ai+claims"
+    search_url = base_url.format(company.replace(" ", "+"))
+    try:
+        response = requests.get(search_url, timeout=10)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        link = soup.find('a', href=True, string=lambda text: 'ai' in text.lower() or 'claims' in text.lower() if text else False)
+        return link['href'] if link else '#'
+    except Exception:
+        return '#'
 
 def update_csv():
     with open('risk_data.csv', 'r') as file:
@@ -35,10 +35,6 @@ def update_csv():
     if updated:
         with open('risk_data.csv', 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerows(rows)
-
-if __name__ == "__main__":
-    update_csv()
             writer.writerows(rows)
 
 if __name__ == "__main__":
