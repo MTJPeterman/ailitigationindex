@@ -128,3 +128,16 @@
     </footer>
   </body>
 </html>
+<br><br>
+<hr>
+<p style="text-align: center; font-size: 14px; color: gray;">
+Curated by <strong>Matt Peterman</strong> |
+<a href="https://www.linkedin.com/in/matjaz-matt-peterman" target="_blank" style="color: gray; text-decoration: none;">LinkedIn</a> |
+Last updated: <span id="last-updated"></span>
+</p>
+
+<script>
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', options);
+</script>
+
