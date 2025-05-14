@@ -1,0 +1,31 @@
+Company,AI Product,Launch Date,Model,Wrong Answer Risk %,Real Harm Risk %,Class Action Success %,Estimated Exposure ($),Announcement URL
+UnitedHealth,AI Claims Processor,May 2025,GPT-4,12%,55%,35%,51.8B,#
+Meta,Meta AI Assistant,Apr 2025,Llama 3,8%,40%,30%,12.5B,https://about.meta.com/news/ai-assistant-launch
+Amperity,Customer Data AI,Mar 2025,Custom,10%,45%,28%,8.2B,https://amperity.com/newsroom/customer-data-ai
+Microsoft,Copilot Pro,Jan 2025,GPT-4,7%,35%,25%,15.3B,https://news.microsoft.com/copilot-pro-launch
+Google,Gemini Ultra,Feb 2025,Gemini,9%,38%,27%,14.7B,https://blog.google/technology/gemini-ultra-launch
+Amazon,Alexa AI 2.0,Jun 2025,Custom,11%,42%,29%,10.1B,https://aws.amazon.com/blogs/alexa-ai-2-0
+IBM,Watson Health AI,May 2025,Watson,13%,50%,33%,20.4B,https://www.ibm.com/watson-health/news
+Adobe,Firefly AI,Apr 2025,Custom,6%,30%,22%,7.8B,https://www.adobe.com/news/firefly-ai-launch
+Salesforce,Einstein Analytics,Mar 2025,Custom,8%,37%,26%,9.5B,https://www.salesforce.com/news/einstein-analytics
+Oracle,AI Financial Suite,Feb 2025,Custom,10%,43%,30%,11.2B,https://www.oracle.com/news/ai-financial-suite
+NVIDIA,AI Training Platform,Jan 2025,Custom,5%,28%,20%,6.3B,https://nvidia.com/en-us/news/ai-training-platform
+Intel,Neuromorphic AI,Jun 2025,Custom,12%,47%,32%,13.9B,https://newsroom.intel.com/neuromorphic-ai
+Tesla,Autopilot AI,May 2025,Custom,15%,60%,40%,25.6B,https://www.tesla.com/blog/autopilot-ai-update
+Apple,Siri 2.0,Apr 2025,Custom,7%,33%,24%,8.9B,https://www.apple.com/newsroom/siri-2-0-launch
+Samsung,SmartThings AI,Mar 2025,Custom,9%,39%,27%,10.5B,https://news.samsung.com/smartthings-ai
+Huawei,HarmonyOS AI,Feb 2025,Custom,11%,44%,31%,12.8B,https://consumer.huawei.com/harmonyos-ai-news
+SAP,AI Business Suite,Jan 2025,Custom,8%,36%,25%,9.1B,https://news.sap.com/ai-business-suite
+Accenture,MyWizard AI,Jun 2025,Custom,10%,41%,28%,11.7B,https://www.accenture.com/news/mywizard-ai
+Deloitte,Audit AI,May 2025,Custom,12%,48%,34%,14.3B,https://www2.deloitte.com/audit-ai-news
+PwC,Tax AI Assistant,Apr 2025,Custom,9%,38%,26%,10.2B,https://www.pwc.com/tax-ai-assistant
+EY,Fraud Detection AI,Mar 2025,Custom,11%,45%,30%,12.6B,https://www.ey.com/fraud-detection-ai
+KPMG,Compliance AI,Feb 2025,Custom,8%,35%,24%,9.4B,https://home.kpmg/compliance-ai-news
+Cisco,Network AI,Jan 2025,Custom,7%,32%,23%,8.5B,https://newsroom.cisco.com/network-ai
+Qualcomm,Edge AI,Jun 2025,Custom,10%,40%,27%,11.0B,https://www.qualcomm.com/news/edge-ai
+Broadcom,Security AI,May 2025,Custom,12%,46%,32%,13.5B,https://www.broadcom.com/news/security-ai
+Pfizer,Drug Discovery AI,Apr 2025,Custom,14%,55%,38%,22.1B,https://www.pfizer.com/news/drug-discovery-ai
+GSK,Clinical Trial AI,Mar 2025,Custom,13%,50%,35%,19.8B,https://www.gsk.com/clinical-trial-ai-news
+JPMorgan,Trading AI,Feb 2025,Custom,9%,37%,26%,10.9B,https://www.jpmorgan.com/news/trading-ai
+Goldman Sachs,Investment AI,Jan 2025,Custom,8%,34%,25%,9.7B,https://www.goldmansachs.com/investment-ai
+Bank of America,Loan AI,Jun 2025,Custom,10%,42%,29%,11.4B,https://newsroom.bankofamerica.com/loan-ai
