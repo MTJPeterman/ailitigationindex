@@ -1,106 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Litigation Index - Forecasting Legal Risks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <style>
-      body { font-family: 'Roboto', sans-serif; margin: 40px; background: #f5f7fa; color: #333; }
-      h1 { text-align: center; font-size: 28px; margin-bottom: 10px; color: #1a73e8; }
-      h2 { text-align: center; font-size: 24px; margin-bottom: 20px; color: #333; }
-      table { width: 100%; border-collapse: collapse; margin-top: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; }
-      th { background-color: #1a73e8; color: #fff; padding: 12px; font-size: 14px; cursor: pointer; }
-      th:hover { background-color: #1557b0; }
-      td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; font-size: 14px; }
-      tr:hover { background-color: #f9f9f9; }
-      footer { text-align: center; margin-top: 40px; font-size: 14px; color: #666; border-top: 1px solid #ddd; padding-top: 20px; }
-      section { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
-      ul { text-align: left; }
-      li { margin-bottom: 8px; }
-      a { color: #1a73e8; text-decoration: none; }
-      a:hover { text-decoration: underline; }
-    </style>
-    <script defer data-domain="ailitigationindex.com" src="https://plausible.io/js/script.js"></script>
-    <script>
-      async function loadTableData() {
-        const response = await fetch('risk_data.csv');
-        const text = await response.text();
-        const rows = text.trim().split('\n').map(row => row.split(','));
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Litigation Index - Forecasting Legal Risks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; margin: 40px; background: #f5f7fa; color: #333; }
+    h1 { text-align: center; font-size: 28px; margin-bottom: 10px; color: #1a73e8; }
+    h2 { text-align: center; font-size: 24px; margin-bottom: 20px; color: #333; }
+    table { width: 100%; border-collapse: collapse; margin-top: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); background: #fff; }
+    th { background-color: #1a73e8; color: #fff; padding: 12px; font-size: 14px; cursor: pointer; }
+    th:hover { background-color: #1557b0; }
+    td { padding: 12px; text-align: center; border-bottom: 1px solid #ddd; font-size: 14px; }
+    tr:hover { background-color: #f9f9f9; }
+    footer { text-align: center; margin-top: 40px; font-size: 14px; color: #666; border-top: 1px solid #ddd; padding-top: 20px; }
+    section { margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    ul { text-align: left; }
+    li { margin-bottom: 8px; }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+  <script defer data-domain="ailitigationindex.com" src="https://plausible.io/js/script.js"></script>
+</head>
 
-        const headers = rows[0];
-        const data = rows.slice(1).filter(row => row.length === headers.length); // Filter malformed rows
+<body>
 
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = ''; // Clear existing rows
+<h1>AI Litigation Index</h1>
+<h2>Forecasting Legal Risk Exposure of Major AI Product Launches</h2>
 
-        data.forEach(row => {
-          const tr = document.createElement('tr');
-          row.forEach((cell, index) => {
-            const td = document.createElement('td');
-            if (index === 1 && row[headers.indexOf('Announcement URL')] !== '#') { // AI Product column with link
-              const a = document.createElement('a');
-              a.href = row[headers.indexOf('Announcement URL')];
-              a.textContent = cell;
-              td.appendChild(a);
-            } else {
-              td.textContent = cell;
-            }
-            tr.appendChild(td);
-          });
-          tbody.appendChild(tr);
-        });
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>AI Product</th>
+      <th>Launch Date</th>
+      <th>Model</th>
+      <th>Wrong Answer Risk %</th>
+      <th>Real Harm Risk %</th>
+      <th>Class Action Success %</th>
+      <th>Estimated Exposure ($)</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-        // Sorting functionality
-        document.querySelectorAll('th').forEach((th, index) => {
-          th.addEventListener('click', () => {
-            const isAscending = th.classList.toggle('asc');
-            const rowsArray = Array.from(tbody.querySelectorAll('tr'));
-            rowsArray.sort((a, b) => {
-              const aValue = a.children[index].textContent;
-              const bValue = b.children[index].textContent;
-              if (index === 4 || index === 5 || index === 6) { // Numeric columns (Risk %)
-                return isAscending
-                  ? parseFloat(aValue) - parseFloat(bValue)
-                  : parseFloat(bValue) - parseFloat(aValue);
-              } else if (index === 7) { // Estimated Exposure ($)
-                return isAscending
-                  ? parseFloat(aValue.replace(/[^0-9.]/g, '')) - parseFloat(bValue.replace(/[^0-9.]/g, ''))
-                  : parseFloat(bValue.replace(/[^0-9.]/g, '')) - parseFloat(aValue.replace(/[^0-9.]/g, ''));
-              } else {
-                return isAscending
-                  ? aValue.localeCompare(bValue)
-                  : bValue.localeCompare(aValue);
-              }
-            });
-            tbody.innerHTML = '';
-            rowsArray.forEach(row => tbody.appendChild(row));
-          });
-        });
-      }
-
-      window.onload = loadTableData;
-    </script>
-  </head>
-  <body>
-    <h1>AI Litigation Index</h1>
-    <h2>Forecasting Legal Risk Exposure of Major AI Product Launches</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Company</th>
-          <th>AI Product</th>
-          <th>Launch Date</th>
-          <th>Model</th>
-          <th>Wrong Answer Risk %</th>
-          <th>Real Harm Risk %</th>
-          <th>Class Action Success %</th>
-          <th>Estimated Exposure ($)</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    <section>
+<section>
   <h2>📚 How We Calculate Risk</h2>
   <p>The AI Litigation Index predicts which AI products could cause companies to face big lawsuits. We look at three things:</p>
   <ul>
@@ -113,34 +58,107 @@
   <p>We combine these to forecast the financial risk each company faces if their AI product fails.</p>
 </section>
 
-    <section>
-      <h2>🗂️ What Each Column Means</h2>
-<ul>
-  <li><strong>Company</strong>: The company that launched the AI product.</li>
-  <li><strong>AI Product</strong>: The name of the AI tool or service.</li>
-  <li><strong>Launch Date</strong>: When the AI was publicly launched or announced.</li>
-  <li><strong>Model</strong>: The AI engine behind it (like GPT-4, Claude 3, Llama 3).</li>
-  <li><strong>Wrong Answer Risk %</strong>: How often the AI gives wrong or misleading answers.</li>
-  <li><strong>Real Harm Risk %</strong>: How likely it is that a mistake actually causes real damage.</li>
-  <li><strong>Class Action Success %</strong>: How often people win class action lawsuits in that industry.</li>
-  <li><strong>Estimated Exposure ($)</strong>: The possible financial loss from lawsuits.</li>
-</ul>
-    </section>
-    <footer>
-      Last Updated: May 2025 | Built by AI Litigation Index
-    </footer>
-  </body>
-</html>
-<br><br>
-<hr>
-<p style="text-align: center; font-size: 14px; color: gray;">
-Curated by <strong>Matt Peterman</strong> |
-<a href="https://www.linkedin.com/in/matjaz-matt-peterman" target="_blank" style="color: gray; text-decoration: none;">LinkedIn</a> |
-Last updated: <span id="last-updated"></span>
-</p>
+<section>
+  <h2>🗂️ What Each Column Means</h2>
+  <ul>
+    <li><strong>Company</strong>: The company that launched the AI product.</li>
+    <li><strong>AI Product</strong>: The name of the AI tool or service.</li>
+    <li><strong>Launch Date</strong>: When the AI was publicly launched or announced.</li>
+    <li><strong>Model</strong>: The AI engine behind it (like GPT-4, Claude 3, Llama 3).</li>
+    <li><strong>Wrong Answer Risk %</strong>: How often the AI gives wrong or misleading answers.</li>
+    <li><strong>Real Harm Risk %</strong>: How likely it is that a mistake actually causes real damage.</li>
+    <li><strong>Class Action Success %</strong>: How often people win class action lawsuits in that industry.</li>
+    <li><strong>Estimated Exposure ($)</strong>: The possible financial loss from lawsuits.</li>
+  </ul>
+</section>
+
+<section style="text-align: center; margin-top: 60px;">
+  <h2>🧠 Serious AI Needs Structure, Not Just Language Tricks</h2>
+  <p style="max-width: 800px; margin: 20px auto; font-size: 16px;">
+    LLMs are good at generating text. They’re bad at delivering guarantees.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto; font-size: 16px;">
+    In finance, healthcare, insurance, and defense, guesses aren't good enough. Regulated industries don't tolerate hallucinations.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto; font-size: 16px;">
+    The next generation of serious AI will combine large models with neuro-symbolic reasoning, category theory, and formal knowledge graphs — because that's what surviving in regulated markets demands.
+  </p>
+  <p style="max-width: 800px; margin: 20px auto; font-size: 16px;">
+    If you're building for where the world is going — not where it was last year — let's talk.
+  </p>
+  <a href="mailto:your-email@example.com" style="background-color: #1a73e8; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; margin-top: 20px; display: inline-block;">Work Together</a>
+</section>
+
+<footer>
+  <p style="text-align: center; font-size: 14px; color: gray;">
+    Curated by <strong>Matt Peterman</strong> |
+    <a href="https://www.linkedin.com/in/matjaz-matt-peterman" target="_blank" style="color: gray; text-decoration: none;">LinkedIn</a> |
+    Last updated: <span id="last-updated"></span>
+  </p>
+</footer>
 
 <script>
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', options);
+  async function loadTableData() {
+    const response = await fetch('risk_data.csv');
+    const text = await response.text();
+    const rows = text.trim().split('\n').map(row => row.split(','));
+
+    const headers = rows[0];
+    const data = rows.slice(1).filter(row => row.length === headers.length);
+
+    const tbody = document.querySelector('tbody');
+    tbody.innerHTML = '';
+
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      row.forEach((cell, index) => {
+        const td = document.createElement('td');
+        if (index === 1 && row[headers.indexOf('Announcement URL')] !== '#') {
+          const a = document.createElement('a');
+          a.href = row[headers.indexOf('Announcement URL')];
+          a.textContent = cell;
+          td.appendChild(a);
+        } else {
+          td.textContent = cell;
+        }
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+
+    document.querySelectorAll('th').forEach((th, index) => {
+      th.addEventListener('click', () => {
+        const isAscending = th.classList.toggle('asc');
+        const rowsArray = Array.from(tbody.querySelectorAll('tr'));
+        rowsArray.sort((a, b) => {
+          const aValue = a.children[index].textContent;
+          const bValue = b.children[index].textContent;
+          if (index === 4 || index === 5 || index === 6) {
+            return isAscending
+              ? parseFloat(aValue) - parseFloat(bValue)
+              : parseFloat(bValue) - parseFloat(aValue);
+          } else if (index === 7) {
+            return isAscending
+              ? parseFloat(aValue.replace(/[^0-9.]/g, '')) - parseFloat(bValue.replace(/[^0-9.]/g, ''))
+              : parseFloat(bValue.replace(/[^0-9.]/g, '')) - parseFloat(aValue.replace(/[^0-9.]/g, ''));
+          } else {
+            return isAscending
+              ? aValue.localeCompare(bValue)
+              : bValue.localeCompare(aValue);
+          }
+        });
+        tbody.innerHTML = '';
+        rowsArray.forEach(row => tbody.appendChild(row));
+      });
+    });
+  }
+
+  window.onload = loadTableData;
+
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', options);
 </script>
+
+</body>
+</html>
 
